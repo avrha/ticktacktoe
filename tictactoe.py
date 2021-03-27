@@ -1,88 +1,29 @@
 #!/usr/bin/python3
 
-
-class Tictactoe:
+class Tictactoe():
   def __init__(self):
-    self.coords = {
-     "1,1": "-",
-     "1,2": "-",
-     "1,3": "-",
-   
-     "2,1": "-",
-     "2,2": "-",
-     "2,3": "-",
-   
-     "3,1": "-",
-     "3,2": "-",
-     "3,3": "-"
-    } 
+    self.values = [' ' for x in range(9)]
+    self.player_pos = {'X': [], 'O':[]}
 
-    self.player1 = True
-    self.player2 = False
-
-  def start_game(self):
-    print("Welcome to tic tac toe!")
-    self.choose_mode()
-    
-    while True:
-      self.print_board()
-      self.player_move()
-
-    
-  def choose_mode(self):
-    game_mode = input("Choose game mode: PvP or PvC: ")
-    if game_mode.lower() == "pvp":
-      print("pvp test")
-    elif game_mode.lower() == "pvc":
-      print("pvc test")
-    else:
-      print("Invalid option, try again")
-      self.choose_mode()
-
-    
   def print_board(self):
-    print("  1 2 3")
-    print("1 "+self.coords["1,1"]+"|"+self.coords["1,2"]+"|"+self.coords["1,3"])
-    print("2 "+self.coords["2,1"]+"|"+self.coords["2,2"]+"|"+self.coords["2,3"])
-    print("3 "+self.coords["3,1"]+"|"+self.coords["3,2"]+"|"+self.coords["3,3"])
-
-
-  def player_move(self):
-    move = input("Move (x,y): ")
-    print(move)
-    x = "X"
-    o = "O"
-    
-    if self.player1 == True:
-      for i in self.coords: 
-        if move == i:
-          if self.coords[i] == x or self.coords[i] == o:
-            print("Already taken")
-            self.print_board()
-            self.player_move()
-          else:
-            self.coords[i] = x
-
-      self.player1 = False
-      self.player2 = True
-
-    elif self.player2 == True:
-      for i in self.coords: 
-        if move == i:
-          if self.coords[i] == x or self.coords[i] == o:
-            print("Already taken")
-            self.print_board()
-            self.player_move()
-
-          else:
-            self.coords[i] = o
-      self.player1 = True
-      self.player2 = False
-      
+    print("\n")
+    print("\t1    |2    |3")
+    print("\t  {}  |  {}  |  {}".format(self.values[0], self.values[1], self.values[2]))
+    print('\t_____|_____|_____')
+ 
+    print("\t4    |5    |6")
+    print("\t  {}  |  {}  |  {}".format(self.values[3], self.values[4], self.values[5]))
+    print('\t_____|_____|_____')
+ 
+    print("\t7    |8    |9")
+ 
+    print("\t  {}  |  {}  |  {}".format(self.values[6], self.values[7], self.values[8]))
+    print("\t     |     |")
+    print("\n")
 
 def main():
   obj = Tictactoe()
-  obj.start_game()
+  obj.print_board()
 
 if __name__ == '__main__':
   main()
