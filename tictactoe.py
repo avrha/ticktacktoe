@@ -1,26 +1,27 @@
 #!/usr/bin/python3
-import numpy as np
 
-board_coords = np.array([[1,2,3],[1,2,3],[1,2,3]])
+class Tictactoe:
+  def __init__(self):
+    self.coords = {
+     "1,1": "-",
+     "1,2": "-",
+     "1,3": "-",
+   
+     "2,1": "-",
+     "2,2": "-",
+     "2,3": "-",
+   
+     "3,1": "-",
+     "3,2": "-",
+     "3,3": "-"
+    } 
 
-def print_board():
-  print(" X    0     1     2")
-  for i in range(0,3):
-    if i == 0:
-      print(
-        "Y  |-----|-----|-----|\n"
-        "   |     |     |     |\n",i,
-        "|     |     |     |\n"
-        "   |     |     |     |\n"
-        "   |-----|-----|-----|"
-        )
-    else:
-      print(
-        "   |     |     |     |\n",i,
-        "|     |     |     |\n"
-        "   |     |     |     |\n"
-        "   |-----|-----|-----|"
-        )
-      
+  def print_board(self):
+    print(self.coords["1,1"])
+
+def main():
+  obj = Tictactoe()
+  obj.print_board()
+
 if __name__ == '__main__':
-  print_board()
+  main()
