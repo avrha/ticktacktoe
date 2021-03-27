@@ -56,7 +56,12 @@ class Tictactoe:
     if self.player1 == True:
       for i in self.coords: 
         if move == i:
-          self.coords[i] = x
+          if self.coords[i] == x or self.coords[i] == o:
+            print("Already taken")
+            self.print_board()
+            self.player_move()
+          else:
+            self.coords[i] = x
 
       self.player1 = False
       self.player2 = True
@@ -64,8 +69,13 @@ class Tictactoe:
     elif self.player2 == True:
       for i in self.coords: 
         if move == i:
-          self.coords[i] = o
+          if self.coords[i] == x or self.coords[i] == o:
+            print("Already taken")
+            self.print_board()
+            self.player_move()
 
+          else:
+            self.coords[i] = o
       self.player1 = True
       self.player2 = False
       
