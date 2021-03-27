@@ -24,7 +24,7 @@ class Tictactoe():
       self.print_board()
       self.player_move()
 
-      #if self.check_win():
+      #if self.check_win() == True:
       #  print(self.current_player," Wins!")
       #  break
       
@@ -62,13 +62,14 @@ class Tictactoe():
     else:
       print("Switching error")
   
-  def check_win(self):
-    soln = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    
-    for x in soln:
-      if all(y in self.player_pos[self.current_player] for x in y):
-        return True
-    return False
+  #def check_win(self):
+  #  soln = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+  #  for x in soln:
+  #    y = 'a'
+  #    if all(y in self.player_pos[self.current_player] for x in y):
+  #      print("winner!")
+  #      return True
+  #    return False
   
   def check_tie(self):
     if len(self.player_pos['X']) + len(self.player_pos['O']) == 9:
