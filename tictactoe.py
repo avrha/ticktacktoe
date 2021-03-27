@@ -18,10 +18,11 @@ class Tictactoe:
     } 
 
   def print_board(self):
-    print(self.coords["1,1"]+"|"+self.coords["1,2"]+"|"+self.coords["1,3"])
-    print(self.coords["2,1"]+"|"+self.coords["2,2"]+"|"+self.coords["2,3"])
-    print(self.coords["3,1"]+"|"+self.coords["3,2"]+"|"+self.coords["3,3"])
-
+    print("  1 2 3")
+    print("1 "+self.coords["1,1"]+"|"+self.coords["1,2"]+"|"+self.coords["1,3"])
+    print("2 "+self.coords["2,1"]+"|"+self.coords["2,2"]+"|"+self.coords["2,3"])
+    print("3 "+self.coords["3,1"]+"|"+self.coords["3,2"]+"|"+self.coords["3,3"])
+    
 def main():
   obj = Tictactoe()
   obj.print_board()
