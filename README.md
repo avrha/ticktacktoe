@@ -4,4 +4,6 @@ Simple tic tac toe program written in python, streamed on twitch. https://twitch
 # TODO
 - [x] Setup playing board
 - [x] Add moves and turns
-- [ ] Declare a win or tie 
+- [x] Declare a win or tie 
+- [ ] Improve interface
+- [ ] Add PvC mode
