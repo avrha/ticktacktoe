@@ -24,14 +24,17 @@ class Tictactoe():
       self.print_board()
       self.player_move()
 
-      #if self.check_win() == True:
-      #  print(self.current_player," Wins!")
-      #  break
+      if self.check_win(): 
+        self.print_board()
+        print(self.current_player," Wins!")
+        break
       
       if self.check_tie():
         self.print_board()
         print("Tie Game!")
         break
+
+      self.switch_turns()
       
   def player_move(self):
     while True:
@@ -51,7 +54,6 @@ class Tictactoe():
       
       self.values[move-1] = self.current_player
       self.player_pos[self.current_player].append(move)
-      self.switch_turns()
       break
   
   def switch_turns(self):
@@ -62,21 +64,26 @@ class Tictactoe():
     else:
       print("Switching error")
   
-  #def check_win(self):
-  #  soln = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-  #  for x in soln:
-  #    y = 'a'
-  #    if all(y in self.player_pos[self.current_player] for x in y):
-  #      print("winner!")
-  #      return True
-  #    return False
-  
+  def check_win(self):
+    #Possible Winning cominbations
+    soln = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+
+    for i in range(7):
+      tmp = []
+      for j in range(3):
+        for k in self.player_pos[self.current_player]:
+          if soln[i][j] == k:
+            tmp.append(k)
+      
+      if len(tmp) == 3:
+        return True
+    return False
+            
   def check_tie(self):
     if len(self.player_pos['X']) + len(self.player_pos['O']) == 9:
       return True
     else:
-      return False
-
+      return False 
 
 def main():
   obj = Tictactoe()
