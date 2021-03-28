@@ -20,21 +20,27 @@ class Tictactoe():
     print("\n")
   
   def single_game(self):
-    while True:
-      self.print_board()
-      self.player_move()
 
-      if self.check_win(): 
+    if self.choose_mode():
+      while True:
+        print("Player Turn:", self.current_player)
         self.print_board()
-        print(self.current_player," Wins!")
-        break
+        self.player_move()
+
+        if self.check_win(): 
+          self.print_board()
+          print(self.current_player,"Wins!")
+          break
+        
+        if self.check_tie():
+          self.print_board()
+          print("Tie Game!")
+          break
+
+        self.switch_turns()
+    else:
+      break 
       
-      if self.check_tie():
-        self.print_board()
-        print("Tie Game!")
-        break
-
-      self.switch_turns()
       
   def player_move(self):
     while True:
@@ -84,6 +90,19 @@ class Tictactoe():
       return True
     else:
       return False 
+
+  def choose_mode(self):
+    mode = input("Choose a game mode (PvP PvC): ")
+   
+    if mode.lower() == "pvp":
+      return True
+    
+    elif mode.lower() == "pvc": 
+      return False
+      
+    else:
+      print("Invalid input, try again.")
+      self.choose_mode(self)
 
 def main():
   obj = Tictactoe()
