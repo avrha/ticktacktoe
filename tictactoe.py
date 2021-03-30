@@ -8,6 +8,8 @@ class Tictactoe():
     self.player_pos = {'X': [], 'O':[]}
     self.current_player = 'X'
 
+
+  #print out board
   def print_board(self):
     print("\n")
     print("\t1    |2    |3")
@@ -21,6 +23,8 @@ class Tictactoe():
     print("\t     |     |")
     print("\n")
   
+
+  #start a single game
   def single_game(self):
     mode = input("Choose a game mode (PvP PvC): ")
    
@@ -31,6 +35,7 @@ class Tictactoe():
           print("Player Turn:", self.current_player)
           self.player_move()
 
+          #check for win or tie
           if self.check_win(): 
             self.print_board()
             print(self.current_player,"Wins!")
@@ -51,8 +56,9 @@ class Tictactoe():
         if self.current_player == 'X':
           self.print_board()
           print("Player Turn: ", self.current_player)
-
           self.player_move()
+
+          #check for win or tie
           if self.check_win(): 
             self.print_board()
             print("Human wins!")
@@ -66,8 +72,9 @@ class Tictactoe():
           self.switch_turns()
 
         elif self.current_player == 'O':
-
           self.cpu_move()
+
+          #check for win or tie
           if self.check_win(): 
             self.print_board()
             print("CPU wins!")
@@ -89,6 +96,7 @@ class Tictactoe():
       self.single_game()
 
       
+  #take player's input and place on board
   def player_move(self):
     while True:
       try:
@@ -109,6 +117,7 @@ class Tictactoe():
       self.player_pos[self.current_player].append(move)
       break
   
+  #switch player turns
   def switch_turns(self):
     if self.current_player == 'X':
       self.current_player = 'O'
@@ -117,10 +126,13 @@ class Tictactoe():
     else:
       print("Switching error")
   
+
+  #determine a win
   def check_win(self):
-    #Possible Winning cominbations
+    #Possible Winning combinations
     soln = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
 
+    #parse through 2d array containing possible winning combos
     for i in range(8):
       tmp = []
       for j in range(3):
@@ -132,13 +144,16 @@ class Tictactoe():
         return True
     return False
             
+
+  #determine a tie
   def check_tie(self):
     if len(self.player_pos['X']) + len(self.player_pos['O']) == 9:
       return True
-    else:
+    else
       return False 
 
 
+  #cpu makes a move based on random guess
   def cpu_move(self):
     while True:
       move = random.randrange(1,10)
@@ -150,6 +165,7 @@ class Tictactoe():
         break
 
 
+#create obj to begin game
 def main():
   obj = Tictactoe()
   obj.single_game()
