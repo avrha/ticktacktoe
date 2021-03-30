@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import random
+
 
 class Tictactoe():
   def __init__(self):
@@ -20,27 +22,72 @@ class Tictactoe():
     print("\n")
   
   def single_game(self):
-
-    if self.choose_mode():
+    mode = input("Choose a game mode (PvP PvC): ")
+   
+    #pvp mode
+    if mode.lower() == "pvp":
       while True:
-        print("Player Turn:", self.current_player)
-        self.print_board()
-        self.player_move()
-
-        if self.check_win(): 
           self.print_board()
-          print(self.current_player,"Wins!")
-          break
-        
-        if self.check_tie():
-          self.print_board()
-          print("Tie Game!")
-          break
+          print("Player Turn:", self.current_player)
+          self.player_move()
 
-        self.switch_turns()
-    else:
-      break 
+          if self.check_win(): 
+            self.print_board()
+            print(self.current_player,"Wins!")
+            break
+          
+          if self.check_tie():
+            self.print_board()
+            print("Tie Game!")
+            break
+
+          self.switch_turns()
+
+    #pvc mode
+    elif mode.lower() == "pvc": 
+      print("Human: X CPU: O")
       
+      while True:
+        if self.current_player == 'X':
+          self.print_board()
+          print("Player Turn: ", self.current_player)
+
+          self.player_move()
+          if self.check_win(): 
+            self.print_board()
+            print("Human wins!")
+            break
+          
+          if self.check_tie():
+            self.print_board()
+            print("Tie Game!")
+            break
+
+          self.switch_turns()
+
+        elif self.current_player == 'O':
+
+          self.cpu_move()
+          if self.check_win(): 
+            self.print_board()
+            print("CPU wins!")
+            break
+          
+          if self.check_tie():
+            self.print_board()
+            print("Tie Game!")
+            break
+
+          self.switch_turns()
+          print("Player Turn: ", self.current_player)
+
+      else:
+        print("Selection mode error")
+        
+    else:
+      print("Invalid input. Try again")
+      self.single_game()
+
       
   def player_move(self):
     while True:
@@ -74,7 +121,7 @@ class Tictactoe():
     #Possible Winning cominbations
     soln = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
 
-    for i in range(7):
+    for i in range(8):
       tmp = []
       for j in range(3):
         for k in self.player_pos[self.current_player]:
@@ -91,22 +138,22 @@ class Tictactoe():
     else:
       return False 
 
-  def choose_mode(self):
-    mode = input("Choose a game mode (PvP PvC): ")
-   
-    if mode.lower() == "pvp":
-      return True
-    
-    elif mode.lower() == "pvc": 
-      return False
-      
-    else:
-      print("Invalid input, try again.")
-      self.choose_mode(self)
+
+  def cpu_move(self):
+    while True:
+      move = random.randrange(1,10)
+      if self.values[move-1] != ' ':
+        continue
+      else:
+        self.values[move-1] = self.current_player
+        self.player_pos[self.current_player].append(move)
+        break
+
 
 def main():
   obj = Tictactoe()
   obj.single_game()
+
 
 if __name__ == '__main__':
   main()
