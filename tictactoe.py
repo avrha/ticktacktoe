@@ -149,7 +149,7 @@ class Tictactoe():
   def check_tie(self):
     if len(self.player_pos['X']) + len(self.player_pos['O']) == 9:
       return True
-    else
+    else:
       return False 
 
 
